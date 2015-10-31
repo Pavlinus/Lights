@@ -10,5 +10,7 @@ It is a continuous game with realtime generated levels.
 The project was made on Unity engine.
 
 Author: Kovyrshin Pavel
+
 Email: pavlin.kov@mail.ru
+
 Blog: pavgame.blogspot.ru
