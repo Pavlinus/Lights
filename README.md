@@ -13,4 +13,4 @@ Author: Kovyrshin Pavel
 
 Email: pavlin.kov@mail.ru
 
-Blog: pavgame.blogspot.ru
+Blog: http://pavgame.blogspot.ru
