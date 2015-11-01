@@ -45,9 +45,12 @@ public class PlayerMovement : MonoBehaviour {
 
 		transform.position = Vector3.Lerp (transform.position, movement, smoothMove);
 	}
-
-	// Controls the bonus active time
+	
 	public void SpeedUp(float bonusSpeed) {
 		moveSpeed += bonusSpeed;
+	}
+
+	public void StrafeSpeedUp(float bonusSpeed) {
+		strafeSpeed += bonusSpeed;
 	}
 }

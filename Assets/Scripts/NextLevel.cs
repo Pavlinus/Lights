@@ -8,6 +8,7 @@ public class NextLevel : MonoBehaviour {
 	SphereCollider sCollider;
 
 	float speedStep = 2f;
+	float strafeStep = 0.4f;
 
 	void Start () {
 		sCollider = GetComponent<SphereCollider> ();
@@ -21,6 +22,7 @@ public class NextLevel : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.CompareTag ("Player")) {
+			PlayerMovement pMovement = collider.gameObject.GetComponent<PlayerMovement>();
 
 			// If current score is lower than needed for the next level
 			// then game over
@@ -44,7 +46,10 @@ public class NextLevel : MonoBehaviour {
 			GameManager.level += 1;
 
 			// Increase player's speed
-			collider.gameObject.GetComponent<PlayerMovement>().SpeedUp(speedStep);
+			pMovement.SpeedUp(speedStep);
+
+			// Increase player's strafe speed
+			pMovement.StrafeSpeedUp(strafeStep);
 
 			// Instantiate random number of items at random positions
 			int itemsToSpawn = Random.Range(4, 8);

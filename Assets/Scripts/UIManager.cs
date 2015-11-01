@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour {
 
 	void Start() {
 		SetGameOverComponentsState (false);
+		SetPauseMenuComponentsState (false);
 
 		// Transparent color for level text area
 		level.color = new Color(level.color.r, 
@@ -37,7 +38,7 @@ public class UIManager : MonoBehaviour {
 		score.text = "Score: " + GameManager.score;
 		nextLevelText.text = "Next level score: " + GameManager.nextLevelScore;
 
-		if (Input.GetButton("Pause")) {
+		if (Input.GetButtonDown("Pause")) {
 			if(isPaused) {
 				ClosePauseMenu();
 			} else {
@@ -121,6 +122,7 @@ public class UIManager : MonoBehaviour {
 	}
 
 	void SetPauseMenuComponentsState(bool state) {
+		menuBackground.enabled = state;
 		resumeBtn.enabled = state;
 		restartBtn.enabled = state;
 		mainMenuBtn_2.enabled = state;
