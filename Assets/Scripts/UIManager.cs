@@ -6,21 +6,43 @@ public class UIManager : MonoBehaviour {
 
 	public Text level;
 	public Text score;
+	public Text nextLevelText;
 	public Image menuBackground;
+
+	// Game over menu elements
 	public Text gameOverText;
 	public Text resultLevelText;
 	public Button tryAgainBtn;
 	public Button mainMenuBtn;
-	public Text nextLevelText;
+
+	//Pause menu elements
 	public Button resumeBtn;
 	public Button restartBtn;
 	public Button mainMenuBtn_2;
+
+	// Help menu elements
+	public Text helpText_1;
+	public Text helpText_2;
+	public Button wButtonHelp;
+	public Button sButtonHelp;
+
+	// Help buttons components
+	// need to hide them during the game
+	Text wButtonText;
+	Text sButtonText;
+	Image wButtonImg;
+	Image sButtonImg;
 
 	bool isPaused;
 
 	float alphaStep = 0.05f;
 
 	void Start() {
+		wButtonText = wButtonHelp.GetComponentInChildren<Text> ();
+		sButtonText = sButtonHelp.GetComponentInChildren<Text> ();
+		wButtonImg = wButtonHelp.GetComponentInChildren<Image> ();
+		sButtonImg = sButtonHelp.GetComponentInChildren<Image> ();
+
 		SetGameOverComponentsState (false);
 		SetPauseMenuComponentsState (false);
 
@@ -31,6 +53,8 @@ public class UIManager : MonoBehaviour {
 		                        0f);
 		Time.timeScale = 1f;
 		isPaused = false;
+
+		StartCoroutine (HelpMessageController());
 	}
 	
 	void Update () {
@@ -46,6 +70,7 @@ public class UIManager : MonoBehaviour {
 			}
 		}
 	}
+
 
 	public void ShowLevel() {
 		StartCoroutine (SwitchLevelTextArea());
@@ -90,7 +115,6 @@ public class UIManager : MonoBehaviour {
 		yield return new WaitForSeconds (1f);
 
 		SetGameOverComponentsState (true);
-
 		resultLevelText.text = "You reached " + GameManager.level + " level!";
 
 		yield return new WaitForSeconds (0.5f);
@@ -130,5 +154,30 @@ public class UIManager : MonoBehaviour {
 		resumeBtn.GetComponentInChildren<Text> ().enabled = state;
 		restartBtn.GetComponentInChildren<Text> ().enabled = state;
 		mainMenuBtn_2.GetComponentInChildren<Text> ().enabled = state;
+	}
+
+	// Hides help menu
+	IEnumerator HelpMessageController() {
+		yield return new WaitForSeconds (3f);
+
+		do {
+			helpText_1.color = DecreaseAlpha(helpText_1.color);
+			helpText_2.color = DecreaseAlpha(helpText_2.color);
+			wButtonImg.color = DecreaseAlpha(wButtonImg.color);
+			sButtonImg.color = DecreaseAlpha(sButtonImg.color);
+			wButtonText.color = DecreaseAlpha(wButtonText.color);
+			sButtonText.color = DecreaseAlpha(sButtonText.color);
+
+			yield return new WaitForSeconds(0.1f);
+
+		} while(helpText_1.color.a > 0);
+	}
+
+	// Decreases alpha channel's value
+	Color DecreaseAlpha(Color component) {
+		return new Color (component.r,
+		                  component.g,
+		                  component.b,
+		                  component.a - alphaStep);
 	}
 }
