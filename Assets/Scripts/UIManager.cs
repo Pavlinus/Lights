@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
 	// Game over menu elements
 	public Text gameOverText;
 	public Text resultLevelText;
+	public Text difficulty;
 	public Button tryAgainBtn;
 	public Button mainMenuBtn;
 

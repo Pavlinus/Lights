@@ -63,6 +63,8 @@ public class ItemsSpawner : MonoBehaviour {
 			}
 		}
 
+		GameManager.nextLevelScore -= GameManager.difficultyScore;
+
 		// `Next level spot` position
 		nextLevelSpawn = new Vector3 (xOffset, 0f, zLastSpawn + nextLevelSpotOffset);
 		zLastSpawn = nextLevelSpawn.z + nextLevelSpotOffset;

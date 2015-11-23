@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
+	MainMenuUI mainMenuUI;
+
 	void Start () {
 		Time.timeScale = 1f;
-	}
-
-	void Update () {
-	
+		mainMenuUI = GameObject.FindGameObjectWithTag ("MainMenuUI")
+			.GetComponent<MainMenuUI> ();
 	}
 
 	public void PlayButtonPressed() {
-		Application.LoadLevel (1);
+		mainMenuUI.ShowDifficultyMenu ();
 	}
 
 	public void QuitButtonPressed() {

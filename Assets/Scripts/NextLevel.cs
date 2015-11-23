@@ -8,7 +8,7 @@ public class NextLevel : MonoBehaviour {
 	SphereCollider sCollider;
 
 	float speedStep = 2f;
-	float strafeStep = 0.4f;
+	float strafeStep = 1f;
 
 	void Start () {
 		sCollider = GetComponent<SphereCollider> ();

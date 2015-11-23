@@ -3,15 +3,15 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	
-	public float moveSpeed = 15f;
+	float moveSpeed = 20f;
 	float topBound = 20f;
 	float bottomBound = -20f;
-
 	float smoothMove = 1.5f;
 	float strafeSpeed = 13f;
 	float distance = 0.005f;
 
 	void Start () {
+		SetDifficultyParameters ();
 	}
 
 	void Update () {
@@ -52,5 +52,27 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void StrafeSpeedUp(float bonusSpeed) {
 		strafeSpeed += bonusSpeed;
+	}
+
+	// Applying difficulty level to movement parameters
+	void SetDifficultyParameters() {
+		switch(GameManager.difficulty) {
+		case Difficulty.Level.EASY:
+			SetDifficultyMovementValues(20f, 15f);
+			break;
+
+		case Difficulty.Level.HARDER:
+			SetDifficultyMovementValues(25f, 25f);
+			break;
+
+		case Difficulty.Level.OMG:
+			SetDifficultyMovementValues(30f, 45f);
+			break;
+		}
+	}
+
+	void SetDifficultyMovementValues (float speed, float strafe) {
+		moveSpeed = speed;
+		strafeSpeed = strafe;
 	}
 }
